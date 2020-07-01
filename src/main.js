@@ -6,7 +6,25 @@ import router from "./router"
 
 
 Vue.config.productionTip = false
-Vue.prototype.$http=axios
+//根据前端跨域方式做出调整
+axios.defaults.baseURL="http://mall-pre.springboot.cn"
+//超时
+axios.defaults.timeout=8000;
+//拦截
+axios.interceptors.response.use(
+  function(response){
+    let res=response.data;
+    if(res.status == 0){
+      return res.data;
+    }else if(res.status == 10){
+      window.location.href='/#/login';
+    }else{
+      alert(res.status.msg);
+    }
+  }
+)
+
+Vue.prototype.axios=axios;
 
 new Vue({
   router,

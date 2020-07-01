@@ -9,9 +9,9 @@
                     <a href="">协议规则</a>
                 </div>  
                 <div class="topbar-user">
-                    <a href="">登陆</a>
-                    <a href="">注册</a>
-                    <a class="cart"><span class="icon-cart"></span> 购物车</a>
+                    <a href="" v-if="!username" @click="goToLogin()">登陆</a>
+                    <a href="" v-if="!!username">{{username}}</a>
+                    <div class="cart" @click="goToCart()"><span class="icon-cart"></span> 购物车</div>
                 </div>
             </div>
         </div>
@@ -25,46 +25,11 @@
                         <span>小米手机</span>
                         <div class="children">
                             <ul>
-                                <li class="pruduct">
-                                    <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
-                                        <div class="pro-name">小米cc9</div>
-                                        <div class="pro-price">￥2999</div>
-                                    </a>
-                                </li>
-                                <li class="pruduct">
-                                    <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
-                                        <div class="pro-name">小米cc9</div>
-                                        <div class="pro-price">￥2999</div>
-                                    </a>
-                                </li>
-                                <li class="pruduct">
-                                    <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
-                                        <div class="pro-name">小米cc9</div>
-                                        <div class="pro-price">￥2999</div>
-                                    </a>
-                                </li>
-                                <li class="pruduct">
-                                    <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
-                                        <div class="pro-name">小米cc9</div>
-                                        <div class="pro-price">￥2999</div>
-                                    </a>
-                                </li>
-                                <li class="pruduct">
-                                    <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
-                                        <div class="pro-name">小米cc9</div>
-                                        <div class="pro-price">￥2999</div>
-                                    </a>
-                                </li>
-                                <li class="pruduct">
-                                    <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
-                                        <div class="pro-name">小米cc9</div>
-                                        <div class="pro-price">￥2999</div>
+                                <li class="pruduct" v-for="(item,index) in phoneList" :key="index">
+                                    <a :href="'/product/'+item.id" target="_blank">
+                                        <img :src="item.mainImage" alt="phone图片">
+                                        <div class="pro-name">{{item.name}}</div>
+                                        <div class="pro-price">{{item.price|currency}}</div>
                                     </a>
                                 </li>
                             </ul>
@@ -72,11 +37,57 @@
                     </div>
                     <div class="item-menu">
                         <span>REDMI红米</span>
-                        <div class="chidren"></div>
+                        
                     </div>
                     <div class="item-menu">
                         <span>小米电视</span>
-                        <div class="chidren"></div>
+                        <div class="children">
+                            <ul>
+                                <li class="pruduct">
+                                    <a href="/" target="_blank">
+                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <div class="pro-name">小米cc电视</div>
+                                        <div class="pro-price">￥6999</div>
+                                    </a>
+                                </li>
+                                <li class="pruduct">
+                                    <a href="/" target="_blank">
+                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <div class="pro-name">小米cc电视</div>
+                                        <div class="pro-price">￥6999</div>
+                                    </a>
+                                </li>
+                                <li class="pruduct">
+                                    <a href="/" target="_blank">
+                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <div class="pro-name">小米cc电视</div>
+                                        <div class="pro-price">￥6999</div>
+                                    </a>
+                                </li>
+                                <li class="pruduct">
+                                    <a href="/" target="_blank">
+                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <div class="pro-name">小米cc电视</div>
+                                        <div class="pro-price">￥6999</div>
+                                    </a>
+                                </li>
+                                <li class="pruduct">
+                                    <a href="/" target="_blank">
+                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <div class="pro-name">小米cc电视</div>
+                                        <div class="pro-price">￥6999</div>
+                                    </a>
+                                </li>
+                                <li class="pruduct">
+                                    <a href="/" target="_blank">
+                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <div class="pro-name">小米cc电视</div>
+                                        <div class="pro-price">￥6999</div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
                     </div>
                 </div>
                 <div class="header-search">
@@ -91,7 +102,44 @@
 </template>
 <script>
 export default {
-    name:"navheader"
+    name:"navheader",
+    data(){
+        return{
+            username:'jack',
+            phoneList:[]
+        }
+    },
+    filters:{
+        currency(val){
+            if(!val)return '0.00'
+            return '￥'+val.toFixed(2)+"元"
+        }
+    },
+    mounted(){
+        this.getProductList();
+    },
+    methods:{
+        getProductList(){
+            this.axios.get('/products',{
+                params:{
+                    categoryId:'100012'
+                }
+            }).then((res)=>{
+                if(res.list.length>6){
+                    this.phoneList=res.list.slice(0,6);
+                }else{
+                    this.phoneList=res.list.slice(0,6);
+                }
+                // console.log(res);
+            })
+        },
+        goToCart(){
+            this.$router.push('/cart');
+        },
+        goToLogin(){
+            this.$router.push('/login');
+        }
+    }
 }
 </script>
 <style lang="scss">
@@ -128,6 +176,7 @@ export default {
                         width: 110px;
                         text-align: center;
                         color: #ffffff;
+                        cursor: pointer;
                         .icon-cart{
                             @include bgImg(16px,12px,'/imgs/icon-cart-checked.png');
                             margin-right: 4px;
@@ -188,15 +237,17 @@ export default {
                             }
                         }
                         .children{
-                            display: none;
-                            height:220px; 
+                            
                             position: absolute;
                             top:112px;
                             left:0;
                             width: 1226px;
                             border-top: 1px solid #e5e5e5;
                             box-shadow: 0px 7px 6px 0 rgba(0,0,0,0.11);
-                            z-index: 100;
+                            z-index: 10;
+                            overflow: hidden;
+                            height:0; 
+                            transition: all .5s;
                             
                             ul{
                                 @include flex(flex-start);
@@ -231,7 +282,7 @@ export default {
                         }
                         &:hover{
                             .children{
-                               display: block;
+                                height:220px; 
                             }
                         }
                     }
