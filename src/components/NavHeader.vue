@@ -237,7 +237,7 @@ export default {
                             }
                         }
                         .children{
-                            
+                            background: #ffffff;
                             position: absolute;
                             top:112px;
                             left:0;
