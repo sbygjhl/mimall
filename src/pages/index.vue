@@ -56,9 +56,37 @@
                 
                 
             </div>
-            <div class="ads-box"></div>
-            <div class="banner"></div>
-            <div class="product-box"></div>
+            <div class="ads-box">
+                <a :href="'/product/'+item.id" v-for="(item,index) in adsList" :key="index">
+                    <img :src="item.img" alt="">
+                </a>
+            </div>
+            <div class="banner">
+                <a href="/#/product/30">
+                    <img src="/imgs/banner-1.png" alt="">
+                </a>
+            </div>
+            <div class="product-box">
+                <h2>手机</h2>
+                <div class="wrapper">
+                    <div class="banner-left"></div>
+                    <div class="list-box">
+                        <div class="list">
+                            <div class="item">
+                                <span>新品</span>
+                                <div class="item-img"></div>
+                                <div class="item-title"></div>
+                                <div class="item-info">
+                                    <h3>小米9</h3>
+                                    <p>晓龙855，索尼4800万超广角微距</p>
+                                    <p>2999元</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -126,6 +154,28 @@ export default {
                         name:'小米CC9',
                     }
                 ],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]
+            ],
+            adsList:[
+                {
+                    id:33,
+                    img:'/imgs/ads/ads-1.png'
+                },
+                {
+                    id:48,
+                    img:'/imgs/ads/ads-2.jpg'
+                },
+                {
+                    id:45,
+                    img:'/imgs/ads/ads-3.png'
+                },
+                {
+                    id:47,
+                    img:'/imgs/ads/ads-4.jpg'
+                }
+            ],
+            phoneList:[
+                [1,1,1,1],
+                [1,1,1,1]
             ]
 
         }
@@ -200,8 +250,10 @@ export default {
                                     line-height: 75px;
                                     padding-left: 23px;
                                     a{
+                                        display: block;
                                         color:$colorB;
                                         font-size: 14px;
+                                        height: 75px;
                                         
                                         
                                     }
@@ -224,7 +276,28 @@ export default {
 
                     }
                 }
+                
             }
+        }
+        .ads-box{
+            @include flex();
+            margin-top: 14px;
+            margin-bottom: 31px;
+            a{
+                img{
+                    width: 296px;
+                    height: 167px;
+                }
+            }
+            
+        }
+        .banner{
+            img{
+                width: 100%;
+                height: 125px;
+                
+            }
+            margin-bottom: 50px;
         }
     }
 </style>
