@@ -240,10 +240,10 @@ export default {
                         .children{
                             background: #ffffff;
                             position: absolute;
-                            top:112px;
+                            top:110px;
                             left:0;
                             width: 1226px;
-                            border-top: 1px solid #e5e5e5;
+                            // border-top: 1px solid #e5e5e5;
                             box-shadow: 0px 7px 6px 0 rgba(0,0,0,0.11);
                             z-index: 10;
                             overflow: hidden;

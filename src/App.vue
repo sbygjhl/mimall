@@ -17,4 +17,5 @@ export default {
 
 <style>
 @import './assets/scss/reset.scss';
+/* @import 'swiper/css/swiper.css'; */
 </style>
