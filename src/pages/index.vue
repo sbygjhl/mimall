@@ -76,7 +76,7 @@
                         <div class="banner-left"><a href="/product/35"><img src="/imgs/mix-alpha.jpg" alt=""></a></div>
                         <div class="list-box">
                             <div class="list" v-for="(arr,i) in phoneList" :key="i">
-                                <div class="item" v-for="(item,j) in arr" :key="j">
+                                <div class="item" v-for="(item,j) in arr" :key="j+'-'+i" @click="addCart()">
                                     <span :class="{'new-pro':j%2==0,'kill-pro':j%2==1}">新品</span>
                                     <div class="item-img"><img :src="item.mainImage" alt=""></div>
                                     <div class="item-title"></div>
@@ -92,16 +92,25 @@
                     </div>
                 </div>
         </div>
+        <Modal title="提示" sureText="查看购物车" btnType="1" modalType="middle" :showModal="showModal" @submit="goTOCart()" @cancel="showModal=false">
+            <template v-slot:body>
+                <p>商品添加成功</p>
+            </template>
+        </Modal>
+
     </div>
+    
 </template>
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
+import Modal from './../components/Modal'
 export default {
     name:"index",
     components:{
         Swiper,
-        SwiperSlide
+        SwiperSlide,
+        Modal
     },
     data(){
         return{
@@ -178,12 +187,10 @@ export default {
                 }
             ],
             phoneList:[
-                [{
-                    status:"kill-pro"
-                },1,1,1],
+                [1,1,1,1],
                 [1,1,1,1]
-            ]
-
+            ],
+            showModal:false
         }
     },
     mounted(){
@@ -194,13 +201,26 @@ export default {
             this.axios.get('/products',{
                 params:{
                     categotyId:100012,
-                    pageSize:8
+                    pageSize:18
                 }
             }).then(res=>{
-                this.phoneList[0]=res.list.slice(0,4);
-                this.phoneList[1]=res.list.slice(4,8);
+                this.phoneList=[res.list.slice(10,14),res.list.slice(14,18)];
                 console.log(this.phoneList); 
             })
+        },
+        addCart(){
+            this.showModal=true;
+            // this.$axios.post("/carts",{
+            //     productId:id,
+            //     selected:true
+            // }).then(res=>{
+
+            // }).catch((res)=>{
+            //     this.showModal=true;
+            // })
+        },
+        goTOCart(){
+            this.$router.push('/cart');
         }
     }
 }
@@ -358,6 +378,7 @@ export default {
                                 height: 24px;
                                 font-size: 14px;
                                 line-height: 24px;
+                                margin: 5px 0;
                                 &.new-pro{
                                     background-color: #7ecf68;
                                     color: #ffffff;
@@ -369,7 +390,8 @@ export default {
                             }
                             .item-img{
                                 img{
-                                    height: 195px;
+                                    height: 175px;
+                                    width: 236px;
                                 }
                             }
                             .item-info{
