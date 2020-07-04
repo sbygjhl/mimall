@@ -4,19 +4,19 @@
             <div class="mask"></div>
             <div class="modal-dialog">
                 <div class="modal-header">
-                    <span>标题</span>
+                    <span>{{title}}</span>
                     <a href="javscript:;" class="icon-close" @click="$emit('cancel')"></a>
                 </div>
                 <div class="modal-body">
                     <slot name="body"></slot>
                 </div>
                 <div class="modal-footer">
-                    <a href="javascript:;" class="btn" v-if="btnType==1" @click="$emit('submit')">确定1</a>
-                    <a href="javascript:;" class="btn" v-else-if="btnType==2" @click="$emit('cancel')">取消</a>
-                    <a href="javascript:;" class="btn" v-else-if="btnType==3" @click="$emit('cancel')">取消</a>
+                    <a href="javascript:;" class="btn" v-if="btnType==1" @click="$emit('submit')">{{sureType}}</a>
+                    <a href="javascript:;" class="btn" v-else-if="btnType==2" @click="$emit('cancel')">{{cancelText}}</a>
+                    <a href="javascript:;" class="btn" v-else-if="btnType==3" @click="$emit('cancel')">{{cancelText}}</a>
                     <div class="btn-grounp" v-else>
-                        <a href="javascript:;" class="btn">确定</a>
-                        <a href="javascript:;" class="btn">取消</a>
+                        <a href="javascript:;" class="btn">{{sureType}}</a>
+                        <a href="javascript:;" class="btn">{{cancelText}}</a>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@ export default {
         btnType:String,
         sureType:{
             type:String,
-            default:"去顶"
+            default:"确定"
         },
         cancelText:{
             type:String,

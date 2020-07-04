@@ -2,10 +2,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
 import router from "./router"
+import VueLazyload from 'vue-lazyload'
 // import VueAwesomeSwiper from 'vue-awesome-swiper'
-// import 'swiper/css/swiper.css'
 
-
+Vue.use(VueLazyload, {
+  loading: '/imgs/loading-svg/loading-bars.svg',
+  error:'/imgs/loading-svg/loading-spin.svg',
+  attempt: 2
+})
 
 
 Vue.config.productionTip = false

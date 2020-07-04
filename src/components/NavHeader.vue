@@ -27,7 +27,7 @@
                             <ul>
                                 <li class="pruduct" v-for="(item,index) in phoneList" :key="index">
                                     <a :href="'/product/'+item.id" target="_blank">
-                                        <img :src="item.mainImage" alt="phone图片">
+                                        <img v-lazy="item.mainImage" alt="phone图片">
                                         <div class="pro-name">{{item.name}}</div>
                                         <div class="pro-price">{{item.price|currency}}</div>
                                     </a>
@@ -45,42 +45,42 @@
                             <ul>
                                 <li class="pruduct">
                                     <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <img v-lazy="'/imgs/nav-img/nav-3-3.png'" alt="">
                                         <div class="pro-name">小米cc电视</div>
                                         <div class="pro-price">￥6999</div>
                                     </a>
                                 </li>
                                 <li class="pruduct">
                                     <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <img v-lazy="'/imgs/nav-img/nav-3-3.png'" alt="">
                                         <div class="pro-name">小米cc电视</div>
                                         <div class="pro-price">￥6999</div>
                                     </a>
                                 </li>
                                 <li class="pruduct">
                                     <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <img v-lazy="'/imgs/nav-img/nav-3-3.png'" alt="">
                                         <div class="pro-name">小米cc电视</div>
                                         <div class="pro-price">￥6999</div>
                                     </a>
                                 </li>
                                 <li class="pruduct">
                                     <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <img v-lazy="'/imgs/nav-img/nav-3-3.png'" alt="">
                                         <div class="pro-name">小米cc电视</div>
                                         <div class="pro-price">￥6999</div>
                                     </a>
                                 </li>
                                 <li class="pruduct">
                                     <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <img v-lazy="'/imgs/nav-img/nav-3-3.png'" alt="">
                                         <div class="pro-name">小米cc电视</div>
                                         <div class="pro-price">￥6999</div>
                                     </a>
                                 </li>
                                 <li class="pruduct">
                                     <a href="/" target="_blank">
-                                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                                        <img v-lazy="'/imgs/nav-img/nav-3-3.png'" alt="">
                                         <div class="pro-name">小米cc电视</div>
                                         <div class="pro-price">￥6999</div>
                                     </a>
