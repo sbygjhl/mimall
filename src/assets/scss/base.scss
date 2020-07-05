@@ -1,5 +1,12 @@
 .container{
     width: 1226px;
     margin:0 auto;
+    position: relative;
 }    
-    
+
+input{
+    outline: none;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+     

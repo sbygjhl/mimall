@@ -9,9 +9,9 @@
                     <a href="">协议规则</a>
                 </div>  
                 <div class="topbar-user">
-                    <a href="" v-if="!username" @click="goToLogin()">登陆</a>
-                    <a href="" v-if="!!username">{{username}}</a>
-                    <div class="cart" @click="goToCart()"><span class="icon-cart"></span> 购物车</div>
+                    <a href="javascript:;" v-if="!username" @click="goToLogin()">登陆</a>
+                    <a href="javascript:;" v-if="!!username">{{username}}</a>
+                    <div class="cart" @click="goToCart()"><span class="icon-cart"></span> 购物车({{cartCount}})</div>
                 </div>
             </div>
         </div>
@@ -101,11 +101,11 @@
     </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
     name:"navheader",
     data(){
         return{
-            username:'jack',
             phoneList:[]
         }
     },
@@ -117,6 +117,18 @@ export default {
     },
     mounted(){
         this.getProductList();
+    },
+    computed:{
+        // username(){
+        //     return this.$store.state.username
+        // },
+        // cartCount(){
+        //     return this.$store.state.count
+        // },
+        ...mapState([
+            'username',
+            'cartCount'
+        ])
     },
     methods:{
         getProductList(){

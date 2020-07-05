@@ -205,7 +205,7 @@ export default {
                 }
             }).then(res=>{
                 this.phoneList=[res.list.slice(10,14),res.list.slice(14,18)];
-                console.log(this.phoneList); 
+                // console.log(this.phoneList); 
             })
         },
         addCart(){
