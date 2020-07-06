@@ -28,7 +28,7 @@ axios.interceptors.response.use(
     if(res.status == 0){
       return res.data;
     }else if(res.status == 10){
-      if(path!='#/index ')
+      if(path!='#/index')
       window.location.href='/#/login';
     }else{
       alert(res.status.msg);
