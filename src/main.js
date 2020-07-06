@@ -17,7 +17,7 @@ Vue.use(VueCookie);
 
 Vue.config.productionTip = false
 //根据前端跨域方式做出调整
-axios.defaults.baseURL="http://mall-pre.springboot.cn"
+axios.defaults.baseURL="http://localhost:9090/api"
 //超时
 axios.defaults.timeout=8000;
 //拦截

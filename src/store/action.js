@@ -5,5 +5,8 @@ export default{
     },
     saveCartCount(context){
         context.commit("saveCartCount");
+    },
+    saveUserId(context){
+        context.commit("saveUserId");
     }
 }

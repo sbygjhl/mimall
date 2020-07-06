@@ -5,5 +5,8 @@ export default{
     },
     saveCartCount(state){
         ++state.count;
+    },
+    saveUserId(state,id){
+        state.id=id
     }
 }

@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 const state={
     username:'',
-    cartCount:0
+    cartCount:0,
+    id:-1
 }
 export default new Vuex.Store({
     state,

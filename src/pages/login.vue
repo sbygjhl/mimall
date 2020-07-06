@@ -50,38 +50,42 @@ export default{
   },
   methods:{
     login(){
-      //存在跨域问题
-      // let {username}=this;
-      // this.$axios.post('/user/login',{
-      //     username,
-      //     password
-      // }).then(res=>{
-      //   this.$cookie.set('userId',res.id,{expires:"1M"});
-      //   //to-do 保存用户名
-      //   this.$router.push('/index');
-      //   this.$store.dispatch('');
-      // })
-      this.$cookie.set('userName',this.username,{expires:"1h"});
-      this.$store.dispatch('saveUserName',this.username);
-      alert('登陆成功');
-      this.$router.push("/index");
+      // 存在跨域问题
+      let {username,password}=this;
+      this.axios.post('/user/login',{
+          username,
+          password
+      }).then(res=>{
+        // this.$cookie.set('userId',res.id,{expires:"1M"});
+        //to-do 保存用户名
+        console.log(res);
+        this.$store.dispatch('saveUserName',res.username);
+        this.$router.push('/index');
+        // alert(res);
+
+
+      })
+      // this.$cookie.set('userName',this.username,{expires:"1h"});
+      // this.$store.dispatch('saveUserName',this.username);
+      // alert('登陆成功');
+      // this.$router.push("/index");
     },
     //to-do 注册功能
     register(){
       //接口跨域问题
-      // this.$axios.get('/user/login',{
-      //   params:{
-      //     username:'damin1',
-      //     password:'admin1',
-      //     email:'admin@123.com'
-      //   }
-      // }).then(()=>{
-      //   alert('注册成功');
-      // });
-      this.$cookie.set('userName','jack',{expires:"1h"});
-      this.$store.dispatch('saveUserName','jack');
-      alert('注册成功');
-      this.$router.push("/index");
+      this.axios.post('/user/register',{
+          username:'lzc',
+          password:'lzc',
+          email:'lzc@123.com'
+      }).then(()=>{
+        this.$store.dispatch('saveUserName','lzc');
+        alert('注册成功');
+        this.$router.push('/index');
+      });
+      // this.$cookie.set('userName','jack',{expires:"1h"});
+      // this.$store.dispatch('saveUserName','jack');
+      // alert('注册成功');
+      // this.$router.push("/index");
     }
   }
 }
