@@ -5,6 +5,7 @@ import Home from "./pages/home"
 import Index from "./pages/index"
 import Cart from './pages/cart'
 import Login from './pages/login'
+import Product from './pages/product'
 
 Vue.use(router);
 
@@ -20,6 +21,11 @@ export default new router({
                     path:"index",
                     name:"index",
                     component:Index
+                },
+                {
+                    path:'product/:productId',
+                    name:'product',
+                    component:Product
                 }
             ],
             redirect:"/index"
@@ -34,5 +40,6 @@ export default new router({
             name:'cart',
             component:Cart
         }
+        
     ]
 })

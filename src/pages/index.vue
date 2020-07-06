@@ -45,7 +45,7 @@
                 <div class="swiper-container">
                     <Swiper :options="swiperOption">
                         <SwiperSlide v-for="(item,index) in slideList" :key="index">
-                            <a :href="'/product/'+item.id"><img v-lazy="item.img" alt=""></a>
+                            <a :href="'/#/product/'+item.id"><img v-lazy="item.img" alt=""></a>
                         </SwiperSlide>
                         <div class="swiper-pagination" slot="pagination"></div>
                         <div class="swiper-button-prev" slot="button-prev"></div>
@@ -92,6 +92,7 @@
                     </div>
                 </div>
         </div>
+        <ServiceBar></ServiceBar>
         <Modal title="提示" sureText="查看购物车" btnType="1" modalType="middle" :showModal="showModal" @submit="goTOCart()" @cancel="showModal=false">
             <template v-slot:body>
                 <p>商品添加成功</p>
@@ -105,12 +106,14 @@
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 import Modal from './../components/Modal'
+import ServiceBar from "./../components/serviceBar"
 export default {
     name:"index",
     components:{
         Swiper,
         SwiperSlide,
-        Modal
+        Modal,
+        ServiceBar
     },
     data(){
         return{
