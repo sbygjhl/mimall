@@ -25,14 +25,16 @@
       <div class="item-bg-2"></div>
       <div class="item-bg-3"></div>
       <div class="item-swiper">
-        <swiper :options="swiperOption">
+        <swiper class="swiper" :options="swiperOption">
             <swiper-slide><img src="/imgs/product/gallery-2.png" alt=""></swiper-slide>
             <swiper-slide><img src="/imgs/product/gallery-3.png" alt=""></swiper-slide>
             <swiper-slide><img src="/imgs/product/gallery-4.png" alt=""></swiper-slide>
             <swiper-slide><img src="/imgs/product/gallery-5.jpg" alt=""></swiper-slide>
             <swiper-slide><img src="/imgs/product/gallery-6.jpg" alt=""></swiper-slide>
             <!-- Optional controls -->
-            <div class="swiper-pagination"  slot="pagination"></div>
+            <template v-slot:pagination>
+                <div class="swiper-pagination"></div>
+            </template>
         </swiper>
         <p class="desc">小米8 AI变焦双摄拍摄</p>
       </div>
@@ -52,13 +54,14 @@
   </div>
 </template>
 <script>
-  import { swiper, swiperSlide } from 'vue-awesome-swiper'
+  import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
   import ProductParam from './../components/ProductParam'
+    import 'swiper/css/swiper.css'
   export default{
     name:'product',
     components:{
-      swiper,
-      swiperSlide,
+      Swiper ,
+      SwiperSlide,
       ProductParam
     },
     data(){
@@ -70,6 +73,7 @@
           slidesPerView:3,
           spaceBetween: 30,
           freeMode: true,
+          loop:true,
           pagination: {
             el: '.swiper-pagination',
             clickable :true,
@@ -83,7 +87,13 @@
         setTimeout(()=>{
           this.showSlide='';
         },600)
+      },
+      getProductInfo(){
+
       }
+    },
+    mounted(){
+
     }
   }
 </script>
