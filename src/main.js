@@ -14,6 +14,7 @@ Vue.use(VueLazyload, {
 })
 Vue.use(VueCookie);
 
+import 'swiper/css/swiper.css'
 
 Vue.config.productionTip = false
 //根据前端跨域方式做出调整

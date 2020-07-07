@@ -104,7 +104,6 @@
 </template>
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import 'swiper/css/swiper.css'
 import Modal from './../components/Modal'
 import ServiceBar from "./../components/serviceBar"
 export default {
