@@ -2,7 +2,7 @@
   <div class="product">
     <product-param :title="product.name">
       <template v-slot:buy>
-        <button class="btn">立即购买</button>
+        <button class="btn" @click="buy">立即购买</button>
       </template>
     </product-param>
     <div class="content">
@@ -90,7 +90,6 @@
       getProductInfo(){
           let id=this.$route.params.id;
           this.axios.get('/products/'+id).then(res=>{
-              console.log(res);
               
               this.product=res;
           })

@@ -3,8 +3,8 @@ export default{
     saveUserName(context,username){
         context.commit("saveUserName",username);
     },
-    saveCartCount(context){
-        context.commit("saveCartCount");
+    saveCartCount(context,cartCount){
+        context.commit("saveCartCount",cartCount);
     },
     saveUserId(context){
         context.commit("saveUserId");

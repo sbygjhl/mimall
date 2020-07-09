@@ -3,8 +3,8 @@ export default{
     saveUserName(state,username){
         state.username=username;
     },
-    saveCartCount(state){
-        ++state.count;
+    saveCartCount(state,cartCount){
+        state.cartCount=cartCount;
     },
     saveUserId(state,id){
         state.id=id

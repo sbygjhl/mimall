@@ -76,7 +76,7 @@
                         <div class="banner-left"><a href="/product/35"><img :src="'/imgs/mix-alpha.jpg'" alt=""></a></div>
                         <div class="list-box">
                             <div class="list" v-for="(arr,i) in phoneList" :key="i">
-                                <div class="item" v-for="(item,j) in arr" :key="j+'-'+i" @click="addCart()">
+                                <div class="item" v-for="(item,j) in arr" :key="j+'-'+i" @click="showmodal(item.id)">
                                     <span :class="{'new-pro':j%2==0,'kill-pro':j%2==1}">新品</span>
                                     <div class="item-img"><img v-lazy="item.mainImage" alt=""></div>
                                     <div class="item-title"></div>
@@ -95,7 +95,7 @@
         <ServiceBar></ServiceBar>
         <Modal title="提示" sureText="查看购物车" btnType="1" modalType="middle" :showModal="showModal" @submit="goTOCart()" @cancel="showModal=false">
             <template v-slot:body>
-                <p>商品添加成功</p>
+                <p>添加商品到购物车？</p>
             </template>
         </Modal>
 
@@ -192,7 +192,8 @@ export default {
                 [1,1,1,1],
                 [1,1,1,1]
             ],
-            showModal:false
+            showModal:false,
+            id:-1
         }
     },
     mounted(){
@@ -210,19 +211,23 @@ export default {
                 // console.log(this.phoneList); 
             })
         },
-        addCart(){
-            this.showModal=true;
-            // this.$axios.post("/carts",{
-            //     productId:id,
-            //     selected:true
-            // }).then(res=>{
-
-            // }).catch((res)=>{
-            //     this.showModal=true;
-            // })
+        addCart(id){
+            this.axios.post("/carts",{
+                productId:id,
+                selected:true
+            }).then(()=>{
+                this.$router.push('/cart');
+                this.showModal=false;
+            }).catch(()=>{
+                this.showModal=false;
+                alert('请先登陆')
+            })
         },
         goTOCart(){
-            this.$router.push('/cart');
+            this.addCart(this.id);
+        },showmodal(id){
+            this.id=id;
+            this.showModal=true;
         }
     }
 }

@@ -9,4 +9,22 @@ input{
     box-sizing: border-box;
     font-size: 14px;
 }
+
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+
+.clearfix{
+    &:after,&:after{
+        content: '';
+        display: table;
+    }
+    &:after{
+        clear: both;
+    }
+}
+
      
