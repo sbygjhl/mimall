@@ -26,7 +26,6 @@ axios.interceptors.response.use(
   function(response){
     let res=response.data;
     let path=location.hash;
-    console.log(res);
     
     if(res.status == 0){
       return res.data;

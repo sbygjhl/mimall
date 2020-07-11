@@ -57,7 +57,7 @@
                 
             </div>
             <div class="ads-box">
-                <a :href="'/product/'+item.id" v-for="(item,index) in adsList" :key="index">
+                <a :href="'/#/product/'+item.id" v-for="(item,index) in adsList" :key="index">
                     <img v-lazy="item.img" alt="">
                 </a>
             </div>
@@ -73,7 +73,7 @@
                 <div class="container">
                     <h2>手机</h2>
                     <div class="wrapper">
-                        <div class="banner-left"><a href="/product/35"><img :src="'/imgs/mix-alpha.jpg'" alt=""></a></div>
+                        <div class="banner-left"><a href="/#/product/35"><img :src="'/imgs/mix-alpha.jpg'" alt=""></a></div>
                         <div class="list-box">
                             <div class="list" v-for="(arr,i) in phoneList" :key="i">
                                 <div class="item" v-for="(item,j) in arr" :key="j+'-'+i" @click="showmodal(item.id)">
