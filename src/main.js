@@ -5,6 +5,8 @@ import router from "./router"
 import VueLazyload from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
 import store from './store'
+import {Message} from 'element-ui'
+
 // import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 Vue.use(VueLazyload, {
@@ -13,8 +15,12 @@ Vue.use(VueLazyload, {
   attempt: 2
 })
 Vue.use(VueCookie);
+Vue.component(Message.name, Message)
 
 import 'swiper/css/swiper.css'
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.prototype.$message = Message;
 
 Vue.config.productionTip = false
 //根据前端跨域方式做出调整
@@ -33,9 +39,12 @@ axios.interceptors.response.use(
       if(path!='#/index'){
         window.location.href='/#/login';
       }
+      Message({
+        message: '请登陆',
+        type: 'warning'
+      });
       return Promise.reject(res);
     }else{
-      alert(res.status.msg);
       return Promise.reject(res);
     }
   }

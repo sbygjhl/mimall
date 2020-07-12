@@ -13,8 +13,10 @@ export default {
    
   },
   mounted(){
-    this.getUser();
-    this.getCartCount();
+    if(this.$cookie.set('userId')){
+      this.getUser();
+      this.getCartCount();
+    }
     // let username =this.$cookie.get('userName');
     // if(username){
     //   this.$store.dispatch('saveUserName',username)

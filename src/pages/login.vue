@@ -55,14 +55,13 @@ export default{
       this.axios.post('/user/login',{
           username,
           password
-      }).then(res=>{
-        // this.$cookie.set('userId',res.id,{expires:"1M"});
-        //to-do 保存用户名
-        console.log(res);
+      }).then((res)=>{
+        this.$cookie.set('userId',res.id,{expires:"session"});
         this.$store.dispatch('saveUserName',res.username);
+        this.axios.get('/carts/products/sum').then((res)=>{
+          this.$store.dispatch('saveCartCount',res);
+        })
         this.$router.push('/index');
-        // alert(res);
-
 
       })
       // this.$cookie.set('userName',this.username,{expires:"1h"});
