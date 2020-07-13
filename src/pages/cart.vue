@@ -131,6 +131,9 @@ export default {
             selected
           }).then(res=>{
             this.renderData(res);
+            this.axios.get('/carts/products/sum').then((res)=>{
+              this.$store.dispatch('saveCartCount',res);
+            })
           })
         },
         //删除购物车商品

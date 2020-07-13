@@ -13,7 +13,7 @@ export default {
    
   },
   mounted(){
-    if(this.$cookie.set('userId')){
+    if(this.$cookie.get('userId')){
       this.getUser();
       this.getCartCount();
     }

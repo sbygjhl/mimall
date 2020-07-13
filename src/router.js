@@ -9,6 +9,8 @@ import Product from './pages/product'
 import Detail from './pages/detail'
 import Order from './pages/order'
 
+import Confirm from './pages/confirm'
+
 Vue.use(router);
 
 
@@ -50,7 +52,14 @@ export default new router({
         {
             path:'/order',
             name:'order',
-            component:Order
+            component:Order,
+            children:[
+                {
+                    path:'confirm',
+                    name:'confirm',
+                    component:Confirm,
+                }
+            ]
         }
         
     ]
