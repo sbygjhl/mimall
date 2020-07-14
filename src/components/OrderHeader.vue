@@ -5,9 +5,8 @@
                 <a href="/#/index"></a>
             </div>
             <div class="title">
-                <h2>我的购物车</h2>
+                <h2>{{title}}</h2>
                 <slot name='tip'></slot>
-                
             </div>
             <div class="username">
                 <a href="javascript:;">{{username}}</a>

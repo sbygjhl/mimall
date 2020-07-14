@@ -10,6 +10,8 @@ import Detail from './pages/detail'
 import Order from './pages/order'
 
 import Confirm from './pages/confirm'
+import List from './pages/list'
+import Pay from './pages/pay'
 
 Vue.use(router);
 
@@ -58,6 +60,16 @@ export default new router({
                     path:'confirm',
                     name:'confirm',
                     component:Confirm,
+                },
+                {
+                    path:'list',
+                    name:'list',
+                    component:List,
+                },
+                {
+                    path:'pay',
+                    name:'pay',
+                    component:Pay,
                 }
             ]
         }
