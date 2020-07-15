@@ -13,10 +13,11 @@
                 <div class="modal-footer">
                     <a href="javascript:;" class="btn" v-if="btnType==1" @click="$emit('submit')">{{sureType}}</a>
                     <a href="javascript:;" class="btn" v-else-if="btnType==2" @click="$emit('cancel')">{{cancelText}}</a>
+                    <a href="javascript:;" class="btn" v-else-if="btnType==3" @click="$emit('submit')">{{sureType}}</a>
                     <a href="javascript:;" class="btn" v-else-if="btnType==3" @click="$emit('cancel')">{{cancelText}}</a>
                     <div class="btn-grounp" v-else>
-                        <a href="javascript:;" class="btn">{{sureType}}</a>
-                        <a href="javascript:;" class="btn">{{cancelText}}</a>
+                        <a href="javascript:;" class="btn" @click="$emit('submit')">{{sureType}}</a>
+                        <a href="javascript:;" class="btn btn-default" @click="$emit('cancel')">{{cancelText}}</a>
                     </div>
                 </div>
             </div>

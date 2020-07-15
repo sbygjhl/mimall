@@ -16,7 +16,7 @@
               <p>收货信息：{{addressInfo}}</p>
             </div>
             <div class="order-total">
-              <p>应付总额：<span>2599</span>元</p>
+              <p>应付总额：<span>{{payment}}</span>元</p>
               <p>订单详情<em class="icon-down" :class="{'up':!showDetail,'down':showDetail}"  @click="showDetail=!showDetail"></em></p>
             </div>
           </div>
@@ -58,11 +58,25 @@
       </div>
     </div>
     <scan-pay-code v-if="showPay" @close='closePayModal' :img='payImg'></scan-pay-code>
+    <Modal
+        title="支付确认"
+        btnType='4'
+        :showModal='showPayModal'
+        sureType='查看订单'
+        cancelText='未支付'
+        @cancel='showPayModal=false'
+        @submit="goOrderList"
+    >
+        <template v-slot:body>
+            <p>你确认是否完成支付?</p>
+        </template>
+    </Modal>
   </div>
 </template>
 <script>
 import QRCode from 'qrcode'
 import ScanPayCode from './../components/ScanPayCode'
+import Modal from './../components/Modal'
 export default {
     name:'pay',
     data(){
@@ -73,11 +87,15 @@ export default {
             showDetail:true,
             showPay:false,//微信弹框
             payType:0,
-            payImg:''//微信支付的二维码地址
+            payImg:'',//微信支付的二维码地址
+            showPayModal:false,//是否显示二次支付确认弹框 
+            T:'',//定时器ID
+            payment:0
         }
     },
     components:{
-        ScanPayCode
+        ScanPayCode,
+        Modal
     },
     mounted(){
         this.getOrderDetail();
@@ -88,6 +106,7 @@ export default {
                 let item=res.shippingVo;
                 this.addressInfo=`${item.receiverName} ${item.receiverMobile} ${item.receiverProvince} ${item.receiverCity} ${item.receiverDistrict} ${item.receiverAddress}`;
                 this.orderDetail=res.orderItemVoList;
+                this.payment=res.payment;
             });
         },
         paysubmit(payType){
@@ -109,9 +128,30 @@ export default {
                     })
                 })
             }
+            this.loopOrder();
         },
         closePayModal(){    
             this.showPay=false;
+            this.showPayModal=true;
+            clearInterval(this.T);
+        },
+        goOrderList(){
+            this.$router.push({
+                path:'/order/list'
+            })
+        },
+        //轮询订单接口
+        loopOrder(){
+            this.T=setInterval(() => {
+                this.axios.get('/orders/'+this.orderNo).then((res)=>{
+                    console.log(res);
+                    
+                    if(res.status==20){
+                        clearInterval(this.T);
+                        this.goOrderList();
+                    }
+                })
+            }, 3000);
         }
     }
     
