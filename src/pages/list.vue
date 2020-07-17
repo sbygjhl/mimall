@@ -58,7 +58,7 @@
             :currentPage='currpage'
             >
             </el-pagination>
-            <Button @click="(currpage*pageSize)>total?'':checkpage(currpage+1)">加载更多</Button>
+            <Button @click="(currpage*pageSize)>total?'':checkpage(currpage+1)" v-if="false">加载更多</Button>
           </div>
         
           <img src="/imgs/loading-svg/loading-spinning-bubbles.svg" alt="">
