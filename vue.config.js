@@ -12,5 +12,9 @@ module.exports={
             }
         }
     },
-    lintOnSave:false
+    publicPath:'/app',
+    outputDir:'dist',
+    indexPath:'index2.html',
+    lintOnSave:true,
+    productionSourceMap:true
 }
