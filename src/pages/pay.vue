@@ -1,10 +1,10 @@
 <template>
      <div class="order-pay">
-    <order-header title="订单支付">
-      <template v-slot:tip>
-        <span>请谨防钓鱼链接或诈骗电话，了解更多</span>
-      </template>
-    </order-header>
+       <OrderHeader title="订单支付 ">
+         <template v-slot:tip>
+            <span>请谨防钓鱼连接或钓鱼电话，了解更多></span>
+          </template>
+       </OrderHeader>
     <div class="wrapper">
       <div class="container">
         <div class="order-wrap">
@@ -64,7 +64,7 @@
         :showModal='showPayModal'
         sureType='查看订单'
         cancelText='未支付'
-        @cancel='showPayModal=false'
+        @cancel='closePayModal'
         @submit="goOrderList"
     >
         <template v-slot:body>
@@ -77,6 +77,7 @@
 import QRCode from 'qrcode'
 import ScanPayCode from './../components/ScanPayCode'
 import Modal from './../components/Modal'
+import OrderHeader from './../components/OrderHeader'
 export default {
     name:'pay',
     data(){
@@ -95,7 +96,8 @@ export default {
     },
     components:{
         ScanPayCode,
-        Modal
+        Modal,
+        OrderHeader
     },
     mounted(){
         this.getOrderDetail();
