@@ -89,16 +89,10 @@ export default {
             pageSize:5,
             total:0,
             currpage:1,
-            busy: true
         }
     },
     mounted(){
         this.getlist();
-    },
-    updated(){
-      // if((this.currpage*this.pageSize)<this.total){
-      //   this.busy = false; 
-      // }
     },
     methods:{
         getlist(pageNum){
@@ -113,11 +107,9 @@ export default {
             }).then(res=>{
                 
                 this.loading=false;
-                // this.orderlist=res.list;
-                this.orderlist=this.orderlist.concat(res.list);
+                this.orderlist=res.list;
+                // this.orderlist=this.orderlist.concat(res.list);
                 this.total=res.total;
-                console.log(this.busy);
-                // this.busy=true;
             });
         },
         gotopay(orderNo){
@@ -131,13 +123,6 @@ export default {
         checkpage(pageNo){
           this.currpage=pageNo;
           this.getlist(pageNo);
-        },
-        loadMore: function() {
-          // this.busy = true;
-          setTimeout(() => {
-            this.currpage+=1;
-            this.getlist(this.currpage);
-          }, 1000);
         }
     }
 }
@@ -146,10 +131,6 @@ export default {
   @import './../assets/scss/config.scss';
   @import './../assets/scss/mixin.scss';
   .list{
-    .scroll-more{
-      height: 1600px;
-      overflow-y: auto;
-    }
     .wrapper{
       background-color:$colorJ;
       padding-top:33px;
