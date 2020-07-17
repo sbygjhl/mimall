@@ -61,7 +61,6 @@
             <Button @click="(currpage*pageSize)>total?'':checkpage(currpage+1)" v-if="false">加载更多</Button>
           </div>
         
-          <img src="/imgs/loading-svg/loading-spinning-bubbles.svg" alt="">
         </div>
       </div>
     </div>
@@ -86,7 +85,7 @@ export default {
             orderlist:[],
             noData:false,
             loading:true,
-            pageSize:5,
+            pageSize:3,
             total:0,
             currpage:1,
         }

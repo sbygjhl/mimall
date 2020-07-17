@@ -28,7 +28,7 @@
                         <div class="children">
                             <ul>
                                 <li class="pruduct" v-for="(item,index) in phoneList" :key="index">
-                                    <a :href="'/product/'+item.id" target="_blank">
+                                    <a :href="'/#/product/'+item.id">
                                         <img v-lazy="item.mainImage" alt="phone图片">
                                         <div class="pro-name">{{item.name}}</div>
                                         <div class="pro-price">{{item.price|currency}}</div>
