@@ -12,9 +12,12 @@ module.exports={
             }
         }
     },
-    publicPath:'/app',
+    // publicPath:'/app',
     outputDir:'dist',
-    indexPath:'index2.html',
+    indexPath:'mimall.html',
     lintOnSave:true,
-    productionSourceMap:true
+    productionSourceMap:false,
+    chainWebpack:config=>{//删除预加载
+        config.plugins.delete('prefetch');
+    }
 }

@@ -2,17 +2,17 @@ import Vue from "vue"
 import router from "vue-router"
 
 import Home from "./pages/home"
-import Index from "./pages/index"
-import Cart from './pages/cart'
-import Login from './pages/login'
-import Product from './pages/product'
-import Detail from './pages/detail'
-import Order from './pages/order'
+// import Index from "./pages/index"
+// import Cart from './pages/cart'
+// import Login from './pages/login'
+// import Product from './pages/product'
+// import Detail from './pages/detail'
+// import Order from './pages/order'
 
-import Confirm from './pages/confirm'
-import List from './pages/list'
-import Pay from './pages/pay'
-import AliPay from './pages/alipay'
+// import Confirm from './pages/confirm'
+// import List from './pages/list'
+// import Pay from './pages/pay'
+// import AliPay from './pages/alipay'
 Vue.use(router);
 
 
@@ -26,17 +26,17 @@ export default new router({
                 {
                     path:"index",
                     name:"index",
-                    component:Index
+                    component:resolve=>require(['./pages/index.vue'],resolve)
                 },
                 {
                     path:'product/:id',
                     name:'product',
-                    component:Product
+                    component:resolve=>require(['./pages/product.vue'],resolve)
                 },
                 {
                     path:'detail/:id',
                     name:'detail',
-                    component:Detail
+                    component:resolve=>require(['./pages/detail.vue'],resolve)
                 }
             ],
             redirect:"/index"
@@ -44,37 +44,37 @@ export default new router({
         {
             path:'/login',
             name:'login',
-            component:Login
+            component:resolve=>require(['./pages/login.vue'],resolve)
         },
         {
             path:'/cart',
             name:'cart',
-            component:Cart
+            component:resolve=>require(['./pages/cart.vue'],resolve)
         },
         {
             path:'/order',
             name:'order',
-            component:Order,
+            component:resolve=>require(['./pages/order.vue'],resolve),
             children:[
                 {
                     path:'confirm',
                     name:'confirm',
-                    component:Confirm,
+                    component:resolve=>require(['./pages/confirm.vue'],resolve),
                 },
                 {
                     path:'list',
                     name:'list',
-                    component:List,
+                    component:resolve=>require(['./pages/list.vue'],resolve),
                 },
                 {
                     path:'pay',
                     name:'pay',
-                    component:Pay,
+                    component:resolve=>require(['./pages/pay.vue'],resolve),
                 },
                 {
                     path:'aliPay',
                     name:'aliPay',
-                    component:AliPay,
+                    component:resolve=>require(['./pages/alipay.vue'],resolve),
                 }
             ]
         }
